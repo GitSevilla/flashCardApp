@@ -1,9 +1,9 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, StyleSheet, TouchableOpacity } from "react-native";
 
 export const FrontCard = ({ term, flipCard }) => {
   return (
     <TouchableOpacity style={styles.card} onPress={flipCard}>
-      <Text style={styles.text}>Testing</Text>
+      <Text style={styles.text}>Testing{term}</Text>
     </TouchableOpacity>
   );
 };
@@ -11,7 +11,7 @@ export const FrontCard = ({ term, flipCard }) => {
 export const BackCard = ({ definition, flipCard }) => {
   return (
     <TouchableOpacity style={styles.card} onPress={flipCard}>
-      <Text style={styles.text}>Test definition</Text>
+      <Text style={styles.text}>Test definition{definition}</Text>
     </TouchableOpacity>
   );
 };

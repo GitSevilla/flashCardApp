@@ -1,4 +1,3 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useState } from "react";
 import { FrontCard, BackCard } from "../features/flashCard";
 
