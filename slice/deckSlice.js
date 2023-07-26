@@ -9,7 +9,7 @@ const decksSlice = createSlice({
       state.push({
         id: uuid.v4(),
         title: action.payload,
-        cards: [],
+        cards: {},
       });
     },
   },

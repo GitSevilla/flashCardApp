@@ -4,6 +4,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import DeckList from "./flashCardDeckScreen";
 import FlashCard from "./flashCardScreen";
 import CreateDeck from "../features/createDeck";
+import DeckScreen from "./deckScreen";
+import CreateFlashCard from "../features/createFlashCard";
 
 // Create Drawer Navigator
 const Drawer = createDrawerNavigator();
@@ -17,12 +19,17 @@ const DeckListNavigator = () => {
       <Stack.Screen
         name="DeckList"
         component={DeckList}
-        options={{ title: "Decks" }}
+        options={{ title: "Deck List" }}
       />
       <Stack.Screen
         name="CreateDeck"
         component={CreateDeck}
         options={{ title: "Create Deck" }}
+      />
+      <Stack.Screen
+        name="DeckScreen"
+        component={DeckScreen}
+        options={{ title: "Deck" }}
       />
     </Stack.Navigator>
   );

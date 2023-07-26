@@ -1,4 +1,3 @@
-import { useNavigation } from "@react-navigation/native";
 import {
   View,
   Text,
@@ -16,7 +15,7 @@ const Decklist = ({ navigation }) => {
   const renderDeck = ({ item }) => (
     <TouchableOpacity
       style={styles.deckCard}
-      onPress={() => navigateToDeck(item.id)}
+      onPress={() => navigation.navigate('DeckScreen', {deckId: item.id})}
     >
       <Text style={styles.deckTitle}>{item.title}</Text>
     </TouchableOpacity>
