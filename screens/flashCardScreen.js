@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FrontCard, BackCard } from "../features/flashCard";
 
-export const FlashCard = ({ term, definition }) => {
+const FlashCard = ({ term, definition }) => {
     const [isFront, setIsFront] = useState(true);
   
     const flipCard = () => {
@@ -14,3 +14,5 @@ export const FlashCard = ({ term, definition }) => {
       <BackCard definition={definition} flipCard={flipCard} />
     );
   };
+
+export default FlashCard;

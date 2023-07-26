@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { v4 as uuidv4 } from "uuid";
+import uuid from "react-native-uuid";
 
 const decksSlice = createSlice({
   name: "decks",
@@ -7,8 +7,8 @@ const decksSlice = createSlice({
   reducers: {
     createDeck: (state, action) => {
       state.push({
-        id: uuidv4(),
-        name: action.payload,
+        id: uuid.v4(),
+        title: action.payload,
         cards: [],
       });
     },
