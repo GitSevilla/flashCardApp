@@ -2,9 +2,10 @@ import { useDispatch } from "react-redux";
 import { View, TextInput, Button, StyleSheet } from "react-native";
 import { useState } from "react";
 
-const CreateFlashCard = () => {
+const CreateFlashCard = ({ route }) => {
   const [term, setTerm] = useState("");
   const [definition, setDefinition] = useState("");
+  const { deckId } = route.params;
 
   return (
     <>

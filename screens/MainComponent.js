@@ -31,6 +31,11 @@ const DeckListNavigator = () => {
         component={DeckScreen}
         options={{ title: "Deck" }}
       />
+      <Stack.Screen
+        name="CreateFlashCard"
+        component={CreateFlashCard}
+        options={{ title: "Create Card" }}
+      />
     </Stack.Navigator>
   );
 };
