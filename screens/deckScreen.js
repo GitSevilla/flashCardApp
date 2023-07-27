@@ -4,7 +4,7 @@ const DeckScreen = ({ route, navigation }) => {
   const { deckId } = route.params;
   return (
     <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === "ios" ? "padding" : "height"}>
-      <Text>Test {deckId}</Text>
+      <Text>{deckId}</Text>
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={styles.addButton}

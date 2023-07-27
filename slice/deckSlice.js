@@ -12,8 +12,16 @@ const decksSlice = createSlice({
         cards: {},
       });
     },
+    addFlashcard: (state, action) => {
+      const { deckId, id, term, definition } = action.payload;
+
+      const deck = state.find((deck) => deckId === deck.id);
+      if (deck) {
+        deck.cards[id] = { id, term, definition };
+      }
+    },
   },
 });
 
-export const { createDeck } = decksSlice.actions;
+export const { createDeck, addFlashcard } = decksSlice.actions;
 export default decksSlice.reducer;
