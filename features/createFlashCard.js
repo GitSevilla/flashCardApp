@@ -3,14 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { View, TextInput, Button, StyleSheet, Text } from "react-native";
 import { useState, useEffect } from "react";
 import { addFlashcard } from "../slice/deckSlice";
+import { baseUrl, OPENAIKEY } from './openai';
 import uuid from "react-native-uuid";
 import Toast from "react-native-toast-message";
 
 // Create OpenAI instance
 const openAIAPI = axios.create({
-  baseURL: 'https://api.openai.com/v1/chat/completions',
+  baseURL: baseUrl,
   headers: {
-    'Authorization': `Bearer ${process.env.EXPO_PUBLIC_OPENAIKEY}`,
+    'Authorization': `Bearer ${OPENAIKEY}`,
     'Content-Type': 'application/json',
   },
 });
@@ -69,7 +70,9 @@ const CreateFlashCard = ({ route }) => {
       </View>
       <View style={styles.container}>
         <TextInput
-          style={styles.input}
+          style={styles.inputDefinition}
+          multiline
+          numberOfLines={6}
           placeholder="Definition"
           value={definition}
           onChangeText={(text) => setDefinition(text)}
@@ -91,6 +94,13 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     padding: 10,
   },
+  inputDefinition: {
+    height: 100,
+    borderColor: "gray",
+    borderWidth: 1,
+    marginBottom: 20,
+    padding: 10,
+  }
 });
 
 export default CreateFlashCard;
