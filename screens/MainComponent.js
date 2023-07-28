@@ -7,8 +7,7 @@ import CreateDeck from "../features/createDeck";
 import DeckScreen from "./deckScreen";
 import CreateFlashCard from "../features/createFlashCard";
 
-// Create Drawer Navigator
-const Drawer = createDrawerNavigator();
+
 
 // Create Stack Navigator
 const Stack = createStackNavigator();
@@ -43,18 +42,7 @@ const DeckListNavigator = () => {
 const Main = () => {
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName="DeckListNavigator">
-        <Drawer.Screen
-          name="DeckList"
-          component={DeckListNavigator}
-          options={{ title: "Decks" }}
-        />
-        <Drawer.Screen
-          name="FlashCard"
-          component={FlashCard}
-          options={{ title: "Flashcard" }}
-        />
-      </Drawer.Navigator>
+      <DeckListNavigator />
     </NavigationContainer>
   );
 };

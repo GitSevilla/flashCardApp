@@ -8,7 +8,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <Main />
-      <Toast ref={(ref) => Toast.setRef(ref)} />
+      <Toast />
     </Provider>
   );
 }

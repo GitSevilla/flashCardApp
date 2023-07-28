@@ -1,9 +1,9 @@
-import axios from 'axios';
+import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { View, TextInput, Button, StyleSheet, Text } from "react-native";
 import { useState } from "react";
 import { addFlashcard } from "../slice/deckSlice";
-import { baseUrl, OPENAIKEY } from './openai';
+import { baseUrl, OPENAIKEY } from "./openai";
 import uuid from "react-native-uuid";
 import Toast from "react-native-toast-message";
 
@@ -11,8 +11,8 @@ import Toast from "react-native-toast-message";
 const openAIAPI = axios.create({
   baseURL: baseUrl,
   headers: {
-    'Authorization': `Bearer ${OPENAIKEY}`,
-    'Content-Type': 'application/json',
+    Authorization: `Bearer ${OPENAIKEY}`,
+    "Content-Type": "application/json",
   },
 });
 
@@ -28,12 +28,16 @@ const CreateFlashCard = ({ route }) => {
     state.decks.find((deck) => deckId === deck.id)
   );
 
-
   const defineTerm = async (term) => {
     try {
-      const response = await openAIAPI.post('', {
+      const response = await openAIAPI.post("", {
         model: "gpt-3.5-turbo",
-        messages: [{ role: "user", content: `Define ${term} concisely. Format it as such: word (word class): definition` }],
+        messages: [
+          {
+            role: "user",
+            content: `You are a flashcard generator. You will be given a term that goes on the front of the card, and your task is to fill the back of the card. You can be given words, questions, statements that require an answer. If given a word, you will define it and structure it like this, word (word class): definition. If given a question, you will answer it. If given a statement, you will answer it. For the statement, think of it like trivia. An example would be "The biggest planet in our solar system." and you would generate the answer. The term is ${term}.`,
+          },
+        ],
         temperature: 0.3,
       });
       setDefinition(response.data.choices[0].message.content.trim());
@@ -100,7 +104,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 20,
     padding: 10,
-  }
+  },
 });
 
 export default CreateFlashCard;

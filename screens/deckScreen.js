@@ -1,11 +1,11 @@
 import {
   KeyboardAvoidingView,
-  Button,
   Text,
   StyleSheet,
   View,
   TouchableOpacity,
 } from "react-native";
+import { Button, Icon } from "react-native-elements";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import FlashCard from "./flashCardScreen";
@@ -22,14 +22,16 @@ const DeckScreen = ({ route, navigation }) => {
   const currentCard = deck.cards[currentCardKey];
 
   const handleNext = () => {
-    if (currentCardIndex < cardsKeyArr.length - 1) { // Check if it's the last card
+    if (currentCardIndex < cardsKeyArr.length - 1) {
+      // Check if it's the last card
       setCurrentCardIndex(currentCardIndex + 1);
     }
   };
-  
+
   // Function to handle 'Previous' button click
   const handlePrevious = () => {
-    if (currentCardIndex > 0) { // Check if it's the first card
+    if (currentCardIndex > 0) {
+      // Check if it's the first card
       setCurrentCardIndex(currentCardIndex - 1);
     }
   };
@@ -41,16 +43,45 @@ const DeckScreen = ({ route, navigation }) => {
     >
       {cardsKeyArr.length > 0 ? (
         <View>
-        <FlashCard term={currentCard.term} definition={currentCard.definition} />
-        <Button title="Previous" onPress={handlePrevious} />
-        <Button title="Next" onPress={handleNext} />
-      </View>
+          <FlashCard
+            term={currentCard.term}
+            definition={currentCard.definition}
+          />
+          <View style={styles.buttonsContainer}>
+            <Button
+              icon={
+                <Icon
+                  name="chevron-left"
+                  type="font-awesome"
+                  size={22}
+                  color="white"
+                />
+              }
+              title=""
+              onPress={handlePrevious}
+              buttonStyle={styles.button}
+            />
+            <Button
+              icon={
+                <Icon
+                  name="chevron-right"
+                  type="font-awesome"
+                  size={22}
+                  color="white"
+                />
+              }
+              title=""
+              onPress={handleNext}
+              buttonStyle={styles.button}
+            />
+          </View>
+        </View>
       ) : (
         <View>
           <Text>No Cards in this deck yet</Text>
         </View>
       )}
-      <View style={styles.buttonContainer}>
+      <View style={styles.addButtonContainer}>
         <TouchableOpacity
           style={styles.addButton}
           onPress={() =>
@@ -65,13 +96,13 @@ const DeckScreen = ({ route, navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  buttonContainer: {
+  addButtonContainer: {
     position: "absolute",
     bottom: 20,
     right: 20,
   },
   addButton: {
-    backgroundColor: "#ff6347", // tomato color, you can change it as you wish
+    backgroundColor: "#ff6347",
     width: 60,
     height: 60,
     borderRadius: 30,
@@ -89,6 +120,21 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+  },
+  buttonsContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "100%",
+    paddingHorizontal: 20,
+    marginTop: 50,
+  },
+  button: {
+    backgroundColor: "blue",
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 

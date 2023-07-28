@@ -29,6 +29,8 @@ const CreateDeck = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     padding: 20,
+    flex: 1,
+    justifyContent: "center"
   },
   input: {
     height: 40,
