@@ -15,7 +15,7 @@ const Decklist = ({ navigation }) => {
   const renderDeck = ({ item }) => (
     <TouchableOpacity
       style={styles.deckCard}
-      onPress={() => navigation.navigate('DeckScreen', {deckId: item.id})}
+      onPress={() => navigation.navigate('DeckScreen', {deckId: item.id, deckTitle: item.title})}
     >
       <Text style={styles.deckTitle}>{item.title}</Text>
     </TouchableOpacity>

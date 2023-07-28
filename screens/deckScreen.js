@@ -1,14 +1,61 @@
-import { KeyboardAvoidingView, Button, Text, StyleSheet, View, TouchableOpacity } from "react-native";
+import {
+  KeyboardAvoidingView,
+  Button,
+  Text,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+} from "react-native";
+import { useSelector } from "react-redux";
+import { useState } from "react";
+import FlashCard from "./flashCardScreen";
 
 const DeckScreen = ({ route, navigation }) => {
+  const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const { deckId } = route.params;
+  const deck = useSelector((state) =>
+    state.decks.find((deck) => deckId === deck.id)
+  );
+
+  const cardsKeyArr = Object.keys(deck?.cards || []);
+  const currentCardKey = cardsKeyArr[currentCardIndex];
+  const currentCard = deck.cards[currentCardKey];
+
+  const handleNext = () => {
+    if (currentCardIndex < cardsKeyArr.length - 1) { // Check if it's the last card
+      setCurrentCardIndex(currentCardIndex + 1);
+    }
+  };
+  
+  // Function to handle 'Previous' button click
+  const handlePrevious = () => {
+    if (currentCardIndex > 0) { // Check if it's the first card
+      setCurrentCardIndex(currentCardIndex - 1);
+    }
+  };
+
   return (
-    <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === "ios" ? "padding" : "height"}>
-      <Text>{deckId}</Text>
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+    >
+      {cardsKeyArr.length > 0 ? (
+        <View>
+        <FlashCard term={currentCard.term} definition={currentCard.definition} />
+        <Button title="Previous" onPress={handlePrevious} />
+        <Button title="Next" onPress={handleNext} />
+      </View>
+      ) : (
+        <View>
+          <Text>No Cards in this deck yet</Text>
+        </View>
+      )}
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={styles.addButton}
-          onPress={() => navigation.navigate("CreateFlashCard", {deckId: deckId})}
+          onPress={() =>
+            navigation.navigate("CreateFlashCard", { deckId: deckId })
+          }
         >
           <Text style={styles.addButtonText}>+</Text>
         </TouchableOpacity>
@@ -42,7 +89,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-  }
+  },
 });
 
 export default DeckScreen;

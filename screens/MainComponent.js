@@ -29,7 +29,7 @@ const DeckListNavigator = () => {
       <Stack.Screen
         name="DeckScreen"
         component={DeckScreen}
-        options={{ title: "Deck" }}
+        options={({ route }) => ({ title: route.params.deckTitle })}
       />
       <Stack.Screen
         name="CreateFlashCard"
