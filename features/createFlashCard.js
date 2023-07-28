@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useDispatch, useSelector } from "react-redux";
 import { View, TextInput, Button, StyleSheet, Text } from "react-native";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { addFlashcard } from "../slice/deckSlice";
 import { baseUrl, OPENAIKEY } from './openai';
 import uuid from "react-native-uuid";
