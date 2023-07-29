@@ -59,6 +59,8 @@ const CreateFlashCard = ({ route }) => {
     setDefinition("");
   };
 
+  
+
   return (
     <>
       <View style={styles.container}>

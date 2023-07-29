@@ -20,8 +20,12 @@ const decksSlice = createSlice({
         deck.cards[id] = { id, term, definition };
       }
     },
+    deleteDeck: (state, action) => {
+      const index = state.findIndex(deck => deck.id === action.payload)
+      state.splice(index, 1)
+    },
   },
 });
 
-export const { createDeck, addFlashcard } = decksSlice.actions;
+export const { createDeck, addFlashcard, deleteDeck } = decksSlice.actions;
 export default decksSlice.reducer;

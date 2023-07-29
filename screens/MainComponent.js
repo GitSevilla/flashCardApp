@@ -1,8 +1,6 @@
-import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import DeckList from "./flashCardDeckScreen";
-import FlashCard from "./flashCardScreen";
 import CreateDeck from "../features/createDeck";
 import DeckScreen from "./deckScreen";
 import CreateFlashCard from "../features/createFlashCard";

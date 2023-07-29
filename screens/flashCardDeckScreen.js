@@ -8,21 +8,13 @@ import {
 } from "react-native";
 import { useSelector } from "react-redux";
 import CreateDeck from "../features/createDeck";
+import DeckItem from "../features/deckItem";
 
 const Decklist = ({ navigation }) => {
   const decks = useSelector((state) => state.decks);
 
-  const renderDeck = ({ item }) => (
-    <TouchableOpacity
-      style={styles.deckCard}
-      onPress={() => navigation.navigate('DeckScreen', {deckId: item.id, deckTitle: item.title})}
-    >
-      <Text style={styles.deckTitle}>{item.title}</Text>
-    </TouchableOpacity>
-  );
-
   if (decks.length === 0) {
-    return <CreateDeck navigation={navigation} />; // Render CreateDeck component if decks array is empty
+    return <CreateDeck navigation={navigation} />;
   } else {
     return (
       <KeyboardAvoidingView
@@ -31,7 +23,9 @@ const Decklist = ({ navigation }) => {
       >
         <FlatList
           data={decks}
-          renderItem={renderDeck}
+          renderItem={({ item }) => (
+            <DeckItem item={item} navigation={navigation} />
+          )}
           keyExtractor={(item) => item.id}
         />
         <View style={styles.buttonContainer}>
@@ -48,25 +42,6 @@ const Decklist = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  deckCard: {
-    backgroundColor: "#fff",
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-    borderRadius: 10,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
-  deckTitle: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
   container: {
     flex: 1,
   },
@@ -76,7 +51,7 @@ const styles = StyleSheet.create({
     right: 20,
   },
   addButton: {
-    backgroundColor: "#ff6347", // tomato color, you can change it as you wish
+    backgroundColor: "#ff6347",
     width: 60,
     height: 60,
     borderRadius: 30,

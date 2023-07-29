@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Button, Icon } from "react-native-elements";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import FlashCard from "./flashCardScreen";
 
@@ -17,24 +17,28 @@ const DeckScreen = ({ route, navigation }) => {
     state.decks.find((deck) => deckId === deck.id)
   );
 
+  /* Use for delete function
+  const dispatch = useDispatch(); */
+
   const cardsKeyArr = Object.keys(deck?.cards || []);
   const currentCardKey = cardsKeyArr[currentCardIndex];
   const currentCard = deck.cards[currentCardKey];
 
   const handleNext = () => {
     if (currentCardIndex < cardsKeyArr.length - 1) {
-      // Check if it's the last card
       setCurrentCardIndex(currentCardIndex + 1);
     }
   };
 
-  // Function to handle 'Previous' button click
   const handlePrevious = () => {
     if (currentCardIndex > 0) {
-      // Check if it's the first card
       setCurrentCardIndex(currentCardIndex - 1);
     }
   };
+
+  /* const handleDeleteCard = (deckId, cardId) => {
+      dispatch(deleteCard(deckId, currentCardKey));
+  } */
 
   return (
     <KeyboardAvoidingView
